@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   email: z.email("E-mail inválido!"),
-  password: z.string().min(6, "Senha inválida!"),
+  password: z.string().min(8, "Senha inválida!"),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
