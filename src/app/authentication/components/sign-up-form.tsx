@@ -61,9 +61,10 @@ export const SignUpForm = () => {
             form.setError("email", {
               message: "E-mail ja cadastrado!",
             });
-          } else {
-            toast.error(error.error.message);
+            return;
           }
+
+          toast.error(error.error.message);
         },
       },
     });
