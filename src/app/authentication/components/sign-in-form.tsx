@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -11,6 +12,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -70,6 +72,21 @@ export const SignInForm = () => {
     });
   }
 
+  const handleSignInWithGoogle = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success("Logado com sucesso!");
+          router.push("/");
+        },
+        onError: (error) => {
+          toast.error(error.error.message);
+        },
+      },
+    });
+  };
+
   return (
     <>
       <Card className="w-full">
@@ -113,10 +130,28 @@ export const SignInForm = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Entrar</Button>
             </form>
           </Form>
         </CardContent>
+        <CardFooter className="flex flex-col gap-4">
+          <Button type="submit" className="w-full">
+            Entrar
+          </Button>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={handleSignInWithGoogle}
+            type="button"
+          >
+            <Image
+              src="/icons_google.svg"
+              alt="Google"
+              width={20}
+              height={20}
+            />
+            Entrar com google
+          </Button>
+        </CardFooter>
       </Card>
     </>
   );
