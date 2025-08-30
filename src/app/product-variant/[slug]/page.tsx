@@ -10,6 +10,7 @@ import { db } from "@/db";
 import { productTable, productVariantTable } from "@/db/schema";
 import { formatCentsToBRL } from "@/helpers/money";
 
+import { QuantitySelector } from "./components/quantity-selector";
 import { VariantsSelector } from "./components/variants-selector";
 
 interface ProductVariantProps {
@@ -72,6 +73,11 @@ const ProductVariant = async ({ params }: ProductVariantProps) => {
           <h3 className="text-lg font-semibold">
             {formatCentsToBRL(productVariant.priceInCents)}
           </h3>
+        </div>
+
+        <div className="px-5">
+          {/* Quantidade */}
+          <QuantitySelector />
         </div>
 
         <div className="px-5  space-y-4 flex flex-col">
