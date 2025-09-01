@@ -16,6 +16,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
+import { Cart } from "./cart";
 
 export const Header = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ export const Header = () => {
         <Image src="/next.svg" alt="Next Logo" width={100} height={26} />
       </Link>
 
-      <div className="flex items-center">
+      <div className="flex items-center gap-3">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
@@ -89,6 +90,7 @@ export const Header = () => {
             </div>
           </SheetContent>
         </Sheet>
+        <Cart />
       </div>
     </header>
   );
